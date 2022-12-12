@@ -16,15 +16,13 @@ class accountCreationTest(unittest.TestCase):
       self.driver.maximize_window()
       
     def test(self):
-      oldLabel = "Ingrear"
+      oldLabel = "Ingresar"
       driver = self.driver
       driver.get("https://tienda.centroestant.com.ar/")
       time.sleep(2)
       access = driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]/a/span").text
       assert oldLabel != access, "Se encontró el item Ingresar, en el header"
-      access = driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]/a/span")
-      time.sleep(2)
-      access.click()
+      driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]/a/span").click()
 
     def tearDown(self):
         time.sleep(2)

@@ -16,29 +16,27 @@ class accountCreationTest(unittest.TestCase):
       self.driver.maximize_window()
     
     def test(self):
-      mailSend = "p123zas@1232.com"
-      passSend = "pruebaprueba@22@"
+      mailSend = ""
+      passSend = ""
       driver = self.driver
       driver.get("https://tienda.centroestant.com.ar/")
       time.sleep(3)
       textAccess = driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]/a/span").text
-      assert textAccess == "Acceder", "El <span> no posee el texto ACCEDER"
-      access = driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]")
-      access.click()
+      assert textAccess == "Acceder", "El item acceder no se encuentra en el Header"
+      driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]").click()
       time.sleep(1)
-      email = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div[2]/div/div[2]/div/form/p[1]/input")
-      password = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div[2]/div/div[2]/div/form/p[2]/input")
-      regButton = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div[2]/div/div[2]/div/form/p[3]/button")
+      email = driver.find_element(By.ID, "reg_email")
+      password = driver.find_element(By.ID, "reg_password")
+      regButton = driver.find_element(By.NAME, "register")
       email.send_keys(mailSend)
       password.send_keys(passSend)
       time.sleep(2)
       regButton.click()
       time.sleep(4)
-      myAccount = driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]")
-      myAccount.click()
+      driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]").click()
       time.sleep(2)
       welcomeM = driver.find_element(By.XPATH, "/html/body/div[1]/main/div/div/div/div/div/div/p[1]/strong[1]").text
-      assert welcomeM == mailSend[0:7], f"El nombre {mailSend[0:7]} no es visible en el mensaje de bienvenida"
+      assert welcomeM == mailSend[0:8], f"El nombre {mailSend[0:8]} no es visible en el mensaje de bienvenida"
     
     def tearDown(self):
         time.sleep(2)
