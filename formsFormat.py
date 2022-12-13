@@ -20,6 +20,8 @@ class accountCreationTest(unittest.TestCase):
         messageP = "Error: Por favor, introduce la contraseña de tu cuenta."
         driver = self.driver
         driver.get("https://centroestant.com.ar/")
+        title = driver.title
+        assert "INICIO - CENTRO ESTANT" == title, "No se ingresó a la página especificada"
         time.sleep(3)
         driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]").click()
         time.sleep(1)

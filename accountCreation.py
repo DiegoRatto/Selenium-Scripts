@@ -20,6 +20,8 @@ class accountCreationTest(unittest.TestCase):
       passSend = ""
       driver = self.driver
       driver.get("https://tienda.centroestant.com.ar/")
+      title = driver.title
+      assert "INICIO - CENTRO ESTANT" == title, "No se ingresó a la página especificada"
       time.sleep(3)
       textAccess = driver.find_element(By.XPATH, "/html/body/div[2]/header/div/div[1]/div/div[3]/ul/li[2]/a/span").text
       assert textAccess == "Acceder", "El item acceder no se encuentra en el Header"
